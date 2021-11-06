@@ -122,7 +122,7 @@ def filter_by():
     filterfollowing = request.form.get('filterfollowing')
     if(filterbyarg == 'department'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(department=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(department=filterfollowing))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     if(filterbyarg == 'all'):
@@ -132,12 +132,12 @@ def filter_by():
             return render_template('registrations.html', query=Canidates.query.all())
     if(filterbyarg == 'status'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(status=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(status=filterfollowing))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     else:
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(year=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(year=filterfollowing))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
 
@@ -147,20 +147,19 @@ def filter_by():
 def search_by():
     searchbytype = request.form.get('searchbylist')
     searchbyvalue = request.form.get('searchby')
-
     if(searchbytype == 'first_name'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(first_name=searchbyvalue), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(first_name=searchbyvalue))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     if(searchbytype == 'phone_number'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(phone_number=searchbyvalue), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(phone_number=searchbyvalue))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     if(searchbytype == 'email'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(email=searchbyvalue), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(email=searchbyvalue))
         except:
             return render_template('registrations.html', query=Canidates.query.all())
 
