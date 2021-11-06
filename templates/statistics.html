@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-7">
+      <canvas id="myChart"></canvas>
+      <h3 class="text-center">Visualize Graph</h3>
+      <div class="row">
+          
+          <div class="col-md-3 my-2">
+              <button onclick="plot_chart('department')" class="btn btn-block btn-info">Department</button>
+          </div>
+          <div class="col-md-3 my-2">
+            <button onclick="plot_chart('domain')" class="btn btn-block btn-info">Domain</button>
+        </div>
+        <div class="col-md-3 my-2">
+            <button onclick="plot_chart('year')" class="btn btn-block btn-info">Year</button>
+        </div>
+        <div class="col-md-3 my-2">
+            <button onclick="plot_chart('status')" class="btn btn-block btn-info">Status</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <h3 class="text-center">Statistics</h3>
+      <!-- Statistics Code -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-hover table-bordered my-2">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col ">Domain</th>
+                <th scope="col ">Frequency</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for k,v in domain %}
+              <tr>
+                <td>{{k}}</td>
+                <td>{{v}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-hover table-bordered my-2">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col ">Department</th>
+                  <th scope="col ">Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for k,v in department %}
+                <tr>
+                  <td>{{k}}</td>
+                  <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-hover table-bordered my-2">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col ">Year</th>
+                  <th scope="col ">Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for k,v in year %}
+                <tr>
+                  <td>{{k}}</td>
+                  <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-hover table-bordered my-2">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col ">Status</th>
+                  <th scope="col ">Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for k,v in status %}
+                <tr>
+                  <td>{{k}}</td>
+                  <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+
+      <script>
+          let currentJSONData = JSON.parse('{{departmentJSON|safe}}')
+          let currentLabels=Object.keys(currentJSONData)
+          let currentValues = Object.values(currentJSONData)
+
+          let ctx = document.getElementById('myChart').getContext('2d');
+          const config = {
+              type:'bar',
+              data:{
+                  labels:currentLabels,
+                  datasets:[{
+                    label:'Department',
+                    data:currentValues,
+                    backgroundColor:"rgba(0,0,128)",
+                    borderWidth:1,
+                    borderColor: '#777',
+                    hoverBorderColor:"#000",
+                    hoverBordrWidth:4
+                }]
+              }
+          }
+          var statistics_chart = new Chart(ctx, config);
+          function plot_chart(type){
+            const data = statistics_chart.config.data;
+            if(type=='department'){
+                data.datasets[0].label =type
+            data.datasets[0].data = Object.values(JSON.parse('{{departmentJSON|safe}}'))
+            data.labels = Object.keys(JSON.parse('{{departmentJSON|safe}}'))
+            statistics_chart.update()
+            console.log(data)
+        }
+        else if(type=='domain'){
+            data.datasets[0].label =type
+            data.datasets[0].data = Object.values(JSON.parse('{{domainJSON|safe}}'))
+            data.labels = Object.keys(JSON.parse('{{domainJSON|safe}}'))
+            statistics_chart.update()
+            console.log(data)
+        }
+        if(type=='year'){
+            data.datasets[0].label =type
+            data.datasets[0].data = Object.values(JSON.parse('{{yearJSON|safe}}'))
+            data.labels = Object.keys(JSON.parse('{{yearJSON|safe}}'))
+            statistics_chart.update()
+            console.log(data)
+        }
+        if(type=='status'){
+            data.datasets[0].label =type
+            data.datasets[0].data = Object.values(JSON.parse('{{statusJSON|safe}}'))
+            data.labels = Object.keys(JSON.parse('{{statusJSON|safe}}'))
+            statistics_chart.update()
+            console.log(data)
+        }
+        
+        
+    
+        
+          }
+       
+       
+        
+      </script>
+    </div>
+    {% endblock %}
+  </div>
+</div>

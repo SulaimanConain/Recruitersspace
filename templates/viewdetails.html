@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid p-5">
+    <h3>Interviewee Details</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-6 border-right pr-4">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="first_name">FIRST NAME</label>
+              <input
+                readonly
+                value="{{query[0].first_name}}"
+                type="text"
+                id="first_name"
+                name="first_name"
+                class="form-control"
+              />
+            </div>
+            <div class="col">
+              <label for="last_name">LAST NAME</label>
+              <input
+                readonly
+                value="{{query[0].last_name}}"
+                type="text"
+                id="last_name"
+                name="last_name"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="email">EMAIL</label>
+              <input
+                readonly
+                value="{{query[0].email}}"
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+              />
+            </div>
+            <div class="col">
+              <label for="phone_number">PHONE NUMBER</label>
+              <input
+                readonly
+                value="{{query[0].phone_number}}"
+                type="tel"
+                id="phone_number"
+                maxlength="11"
+                minlength="11"
+                name="phone_number"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-8">
+              <label for="department">DEPARTMENT</label>
+              <input
+                readonly
+                value="{{query[0].department}}"
+                type="tel"
+                id="department"
+                name="department"
+                class="form-control"
+              />
+            </div>
+            <div class="col">
+              <label for="year">YEAR</label>
+              <input
+                readonly
+                value="{{query[0].year}}"
+                type="text"
+                id="year"
+                name="year"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="past_experience">PAST EXPERIENCE</label>
+              <textarea
+                rows="3"
+                readonly
+                id="past_experience"
+                name="past_experience"
+                class="form-control"
+              >
+{{query[0].past_experience}}</textarea
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="domain">DOMAIN</label>
+              <input
+                readonly
+                value="{{query[0].domain}}"
+                type="text"
+                id="domain"
+                name="domain"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="reason"
+                >WHY YOU WANT TO BECOME PART OF THIS SOCIETY</label
+              >
+              <textarea
+                readonly
+                id="reason"
+                rows="5"
+                name="reason"
+                class="form-control"
+              >
+{{query[0].past_experience}}</textarea
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <form action="{{ url_for('main.interviwe_selection',email=query[0].email)}}"  method="POST">
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="remarks">REMARKS</label>
+                <textarea
+                  id="remarks"
+                  required
+                  rows="5"
+                  name="remarks"
+                  class="form-control"
+                >{{query[0].remarks}}</textarea>
+              </div>
+              
+          </div>
+          <div class="row">
+            <div class="col">
+              {% if query[0].status == 'pending'%}
+              <h4 class="alert-light text-capitalize p-2 text-center">
+                Status : {{query[0].status}}
+              </h4>
+              {% elif query[0].status == 'hold'%}
+              <h4 class="alert-primary text-capitalize p-2 text-center">
+                Status : {{query[0].status}}
+              </h4>
+              {% elif query[0].status == 'accept'%}
+              <h4 class="alert-success text-capitalize p-2 text-center">
+                Status : {{query[0].status}}
+              </h4>
+              {% else%}
+              <h4 class="alert-danger text-capitalize p-2 text-center">
+                Status : {{query[0].status}}
+              </h4>
+              {%endif%}
+              
+            </div>
+          </div>
+          <br/>
+          <div class="form-group">
+              <div class="row">
+                  <div class="col">
+                    
+                   <button name='checkbtn' value="reject" id='reject' onclick="checkactive(this)"  type="button" style="width: 100%;" class="btn  btn-outline-danger">Reject</button>
+                  
+                  </div>
+                  <div class="col">
+                      <button name='checkbtn' value="hold" id='hold' onclick="checkactive(this)" type="button" style="width: 100%;" class="btn active btn-outline-info">Hold</button>
+                      
+                  </div>
+                  <div class="col">
+                      <button name='checkbtn' value="accept" id='accept' onclick="checkactive(this)" type="button" style="width: 100%;" class="btn btn-outline-success">Accept</button>
+                  </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <input readonly hidden name="interviewee_select" value="hold"  id='intervieweeselect' type="text" class="form-control"/>
+          </div>
+          <div class="form-group">
+              <input type="submit" class="btn btn-block btn-primary" value="Submit"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+      
+      
+      function checkactive(sel){
+          
+          const x = document.getElementsByName('checkbtn')
+          x.forEach(elem=>{
+              elem.classList.remove('active')
+          })
+          document.getElementById(sel.id).classList.add('active')
+          let curentValue = document.getElementById(sel.id).value;
+          document.getElementById('intervieweeselect').value = curentValue;
+       
+      }
+  </script>
+{% endblock %}
+
+

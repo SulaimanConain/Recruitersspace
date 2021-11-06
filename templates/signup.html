@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentec Portal 2021</title>
+    <link rel="stylesheet" href="../static/styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN "
+      crossorigin="anonymous "
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+      crossorigin="anonymous "
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+      crossorigin="anonymous "
+    ></script>
+  </head>
+  <body style="background: #D3CCE3;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  " >
+    <div style="height: 110vh;" class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="card shadow bg-white rounded">
+            <div class="card-body position-relative">
+             <img  src="https://images.ctfassets.net/42x2a2323ixu/4BMCnZkFZHFC1vqGTIdqwI/10f607b2aecd48b6c72a3e40b8f5599f/login.png" style="top:-5%; 
+             left:50%; 
+             transform:translate(-50%, -50%); " class='position-absolute d-none d-md-block' width="100" height="100"/>
+              <h2 class="shadow p-2 mt-4 text-center">Member Signup</h2>
+              {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert-danger p-3">
+                {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+              <form action="/signup" method="POST">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input  name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input name='password' type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputName" class="form-label">Name</label>
+                    <input  name='name' type="text" class="form-control" id="exampleInputName">
+                  </div>
+                <button type="submit" class="btn btn-custom btn-primary w-100">SignUp</button>
+                <div class="my-3">
+                <a style='color:rgb(143, 143, 143)' href="#">Forget Password ?</a>
+            </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,260 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+  <h3>Search Results</h3>
+
+  {% if current_user.email == "president@sentec.com" %}
+  <hr />
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert-{{ category }} p-3 my-3"> {{ message|capitalize }} </div>
+{% endfor %}
+  {% endif %}
+  {% endwith %}
+  <form action="{{ url_for('main.president_controls') }}" method="POST">
+    <div class="form-row">
+       
+      <h3>Welcome Presidential Body</h3>
+     
+      <div class="ml-auto">
+        <input type="submit" value='Generate Records' name="submit_button" class="btn btn-success mx-2">
+          
+        </input>
+        <input type="submit" value='Close Registrations' name="submit_button" class="btn btn-danger mx-2">
+          
+        </input>
+
+        <input type="submit" value='Open Registrations' name="submit_button" class="btn btn-info mx-2">
+          
+        </input>
+      </div>
+    </div>
+  </form>
+  {% endif %}
+  <hr />
+  <form action="{{ url_for('main.filter_by') }}" method="POST">
+    <div class="form-row">
+      <div class="col-md-3 col-4">
+        <label for="filterby">Filter By</label>
+        <select
+          onchange="changecatog()"
+          name="filterby"
+          id="filterby"
+          class="form-select form-control"
+          aria-label="Default select example "
+        >
+          <option value="department" selected>Department</option>
+          <option value="year">Year</option>
+          <option value="all">All</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 col-4">
+        <label
+          class="text-capitalize"
+          id="filterfollowinglabel"
+          for="filterfollowing"
+          >Filter By</label
+        >
+        <select
+          name="filterfollowing"
+          id="filterfollowing"
+          class="form-select form-control"
+          aria-label="Default select example "
+        ></select>
+      </div>
+      <div class="col-md-3 mr-md-auto col-4">
+        <label style="color: transparent">Filter</label>
+        <input
+          type="submit"
+          value="Filter"
+          class="form-control btn btn-outline-success"
+        />
+      </div>
+    </div>
+  </form>
+  <form action="{{ url_for('main.search_by') }}" method="POST">
+    <div class="form-row">
+      <div class="col-4">
+        <label for="searchbylist">Search By</label>
+        <select
+          name="searchbylist"
+          id="searchbylist"
+          class="form-select form-control"
+          aria-label="Default select example"
+          onchange="changesearchtype(this)"
+        >
+          <option value="first_name">First Name</option>
+          <option value="phone_number">Phone Number</option>
+          <option value="email">Email Address</option>
+        </select>
+      </div>
+      <div class="col-5">
+        <label id="searchbylabel" for="searchby">Search By </label>
+        <input
+          required
+          type="text"
+          name="searchby"
+          id="searchby"
+          class="form-control"
+          placeholder=""
+        />
+      </div>
+      <div class="col">
+        <label style="color: transparent">Submit</label>
+        <input
+          type="submit"
+          value="Search"
+          class="form-control btn btn-outline-success"
+        />
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col table-responsive">
+      <table class="table table-hover table-bordered my-2">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Name</th>
+            <th scope="col ">Email</th>
+            <th scope="col ">Year</th>
+            <th scope="col ">Contact No</th>
+            <th scope="col ">Department</th>
+            <th scope="col ">Status</th>
+            <th scope="col ">Details</th>
+            {% if current_user.email == "president@sentec.com" %}
+            <th scope="col ">Delete</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for registarions in query %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td>{{registarions.first_name}}</td>
+            <td>{{registarions.email}}</td>
+            <td>{{registarions.year}}</td>
+            <td>{{registarions.phone_number}}</td>
+            <td>{{registarions.department}}</td>
+            {% if registarions.status == 'pending'%}
+            <td><button  class="btn btn-info" style="pointer-events: none;">{{registarions.status}}</button></td>
+            {% elif registarions.status == 'hold'%}
+            <td><button  class="btn btn-primary" style="pointer-events: none;">{{registarions.status}}</button></td>
+            {% elif registarions.status == 'accept'%}
+            <td><button  class="btn btn-success" style="pointer-events: none;">{{registarions.status}}</button></td>
+            {% else%}
+            <td><button  class="btn btn-danger" style="pointer-events: none;">{{registarions.status}}</button></td>
+            {%endif%}
+
+            <td>
+              <a
+                href="{{ url_for('main.view_details', email=registarions.email) }}"
+                >View Details</a
+              >
+            </td>
+            {% if current_user.email == "president@sentec.com" %}
+            
+              <td>
+                <form action="{{ url_for('main.delete') }}" method="POST">
+                <input name="email" hidden  value={{registarions.email}}></input>
+                <input class="form-control btn btn-outline-danger" type='submit' value="X"/>
+  
+            </form>
+          </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  
+  const department = JSON.parse('{{departments|tojson}}');
+  const years = JSON.parse('{{year|tojson}}');
+  const status = ['pending', 'hold', 'reject', 'accept'];
+  const filterbyref = document.querySelector('#filterby');
+  document.querySelector(
+    '#filterfollowinglabel'
+  ).innerText = `${filterbyref.value}`;
+  var str = '';
+  for (var item of department) {
+    str += `<option value='${item}'>${item}</option>`;
+  }
+  document.querySelector('#filterfollowing').innerHTML = str;
+
+  document.querySelector(
+    '#filterfollowinglabel'
+  ).innerText = `${filterbyref.value}`;
+  function changecatog() {
+    str = '';
+    if (filterbyref.value == 'department') {
+      for (var item of department) {
+        str += `<option value='${item}'>${item}</option>`;
+      }
+      document.querySelector('#filterfollowing').innerHTML = str;
+      document.querySelector(
+        '#filterfollowinglabel'
+      ).innerText = `${filterbyref.value}`;
+    }
+
+    if (filterbyref.value == 'all') {
+      str = '';
+      document.querySelector('#filterfollowing').innerHTML =
+        "<option value='all'>All</option>";
+      document.querySelector(
+        '#filterfollowinglabel'
+      ).innerText = `${filterbyref.value}`;
+    }
+    if (filterbyref.value == 'status') {
+      for (var item of status) {
+        str += `<option value='${item}'>${item}</option>`;
+      }
+      document.querySelector('#filterfollowing').innerHTML = str;
+      document.querySelector(
+        '#filterfollowinglabel'
+      ).innerText = `${filterbyref.value}`;
+    }
+
+    if (filterbyref.value == 'year') {
+      str = '';
+      for (var item of years) {
+        str += `<option value='${item}'>${item}</option>`;
+      }
+      document.querySelector('#filterfollowing').innerHTML = str;
+      document.querySelector(
+        '#filterfollowinglabel'
+      ).innerText = `${filterbyref.value}`;
+    }
+  }
+  function changesearchtype(sel) {
+    const serachlistref = document.querySelector('#searchbylist');
+    const searchvalue = serachlistref.value;
+    const searchbyref = document.querySelector('#searchby');
+    document.querySelector('#searchbylabel').innerText = `${
+      sel.options[sel.selectedIndex].text
+    }`;
+    if (searchvalue == 'first_name') {
+      searchbyref.placeholder = sel.options[sel.selectedIndex].text;
+      searchbyref.type = 'text';
+    }
+    if (searchvalue == 'phone_number') {
+      searchbyref.placeholder = sel.options[sel.selectedIndex].text;
+      searchbyref.type = 'tel';
+    }
+    if (searchvalue == 'email') {
+      searchbyref.placeholder = sel.options[sel.selectedIndex].text;
+      searchbyref.type = 'email';
+    }
+  }
+</script>
+
+{% endblock %}

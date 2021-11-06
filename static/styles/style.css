@@ -1,0 +1,47 @@
+.form-image {
+  background-image: url('https://images.ctfassets.net/42x2a2323ixu/2r3QTTwha2WWcFkcXj5ju5/b71f6d61bb91e5a2e804ee473412cbd5/form-image.jpg');
+  background-size: cover;
+  background-repeat: repeat;
+  background-position-x: -100px;
+}
+
+.bg-custom-1 {
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #fff;
+  font-size: 1.1em;
+  position: relative;
+}
+.navbar .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+.navbar .navbar-nav .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  transition-duration: 0.5s;
+  color: transparent;
+  width: 0%;
+  content: '.';
+  height: 3px;
+}
+.navbar .navbar-nav .nav-link:hover::after {
+  width: 100%;
+}

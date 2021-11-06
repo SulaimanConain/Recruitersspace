@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentec Portal 2021</title>
+    <link rel="stylesheet" href="../static/styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body style="background-color: #fbfbf9">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7 p-md-5">
+          <h3 class="text-center p-2 font-weight-normal">
+            SENTEC REGISTRATION FORM
+          </h3>
+          {% if query.isRegistration %}
+          <hr />
+          <form method="POST" action="{{ url_for('main.index') }}">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert-{{ category }} p-3 my-3"> {{ message|capitalize }} </div>
+          {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {{form.csrf_token}}
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="first_name">FIRST NAME</label>
+                  {{form.first_name(class='form-control')}}
+                  <span>
+                    {% for error in form.first_name.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                  </span>
+                </div>
+                <div class="col">
+                  <label for="last_name">LAST NAME</label>
+                  {{form.last_name(class='form-control')}}
+                  <span>
+                    {% for error in form.last_name.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="email">EMAIL</label>
+                  {{form.email(class='form-control')}}
+                  <span>
+                    {% for error in form.email.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                  <label for="phone_number">PHONE NUMBER</label>
+                  {{form.phone(class='form-control', minlength=11, maxlength=11,
+                  )}}
+                  <span>
+                    {% for error in form.phone.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-7">
+                  <label for="department">DEPARTMENT</label>
+                  {{form.department(class='form-control')}}
+                  <span>
+                    {% for error in form.department.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                  <label for="year">YEAR</label>
+                  {{form.year(class='form-control')}}
+                  <span>
+                    {% for error in form.year.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="past_experience">PAST EXPERIENCE</label>
+                  {{form.pastexp(class='form-control')}}
+                  <span>
+                    {% for error in form.pastexp.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="domain">DOMAIN</label>
+                  {{form.domain(class='form-control')}}
+                  <span>
+                    {% for error in form.domain.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="reason"
+                    >WHY YOU WANT TO BECOME PART OF THIS SOCIETY</label
+                  >
+                  {{form.reason(class='form-control',rows=5)}}
+                  <span>
+                    {% for error in form.reason.errors %}
+                    <div class="form-text text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                style="width: 300px"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          {% else %}
+          <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <h1 class="text-center">Registrations are closed come back next year<span>
+                <br/>
+                <br/>
+                <img src="https://img.icons8.com/cotton/64/000000/grinning-face-with-big-eyes-icon--v2.png"/>
+            </span></h1>
+            
+        </div>
+        
+          {% endif %}
+          
+          
+        </div>
+        <div class="form-image col-md-5 d-md-flex d-none"></div>
+      </div>
+    </div>
+  </body>
+</html>
