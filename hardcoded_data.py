@@ -20,16 +20,19 @@ departments = ["Civil",
                "Food",
                "Environmental",
                "Economics", ]
-domains = ['Promotions',
-           'HR',
-           'Logistics',
-           'Marketing',
-           'Graphics & Creativity',
-           'Documentation',
-           'Robotics & IT',
-           'Social Media',
-           'Event Management',
-           'Research & Development']
+domains = ['Python',
+            'C++',
+            'JAVA',
+            'Web development ',
+            'Android development',
+            'Data Science',
+            'AutoCad',
+            'Matlab',
+            'Proteus',
+            'PCB design',
+            'PSIM',
+            'R'
+                ]
 
 year = ['First Year', 'Second Year', 'Third Year',
         'Forth Year']
