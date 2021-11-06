@@ -3,4 +3,3 @@ db.sqlite3
 /.vscode/
 /__pycache__/
 .env
-/venv/
