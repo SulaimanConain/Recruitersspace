@@ -21,13 +21,13 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: #fbfbf9">
+<body style="background-color: #27d67f">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-7 p-md-5">
+      <div class="col-md-2 p-md-3">
         <h2 class="text-center p-2 font-weight-normal">
           <b>
-            SENTEC REGISTRATION FORM
+            Recruiter's Space
           </b>
         </h2>
         {% if query.isRegistration %}
@@ -44,7 +44,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col">
-                <label for="first_name">FIRST NAME</label>
+                <label for="first_name">First_Name</label>
                 {{form.first_name(class='form-control')}}
                 <span>
                   {% for error in form.first_name.errors %}
@@ -53,7 +53,7 @@
                 </span>
               </div>
               <div class="col">
-                <label for="last_name">LAST NAME</label>
+                <label for="last_name">Last_Name</label>
                 {{form.last_name(class='form-control')}}
                 <span>
                   {% for error in form.last_name.errors %}
