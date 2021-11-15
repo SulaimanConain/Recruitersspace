@@ -46,6 +46,6 @@
   width: 100%;
 }
 
-.form-group {
-  color: rgb(16, 32, 27);
+.form-group button {
+  background-color: rgb(16, 32, 27);
 }
