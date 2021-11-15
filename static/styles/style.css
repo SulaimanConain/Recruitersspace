@@ -45,3 +45,7 @@
 .navbar .navbar-nav .nav-link:hover::after {
   width: 100%;
 }
+
+.form-group {
+  color: rgb(16, 32, 27);
+}
