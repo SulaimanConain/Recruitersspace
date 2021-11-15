@@ -23,7 +23,7 @@ domains = ['Python',
                 ]
 
 year = ['First Year', 'Second Year', 'Third Year',
-        'Forth Year']
+        'Fourth Year']
 
 
 departments_choices = [(k, k) for k in departments]
