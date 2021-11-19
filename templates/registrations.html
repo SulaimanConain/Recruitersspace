@@ -17,18 +17,18 @@
   {% endwith %}
   <form action="{{ url_for('main.president_controls') }}" method="POST">
     <div class="form-row">
- 
-      <h3>Welcome Recruiter</h3>
+       
+      <h3>Welcome Presidential Body</h3>
      
       <div class="ml-auto">
         <input type="submit" value='Generate Records' name="submit_button" class="btn btn-success mx-2">
           
         </input>
-        <!--<input type="submit" value='Close Registrations' name="submit_button" class="btn btn-danger mx-2">-->
+        <input type="submit" value='Close Registrations' name="submit_button" class="btn btn-danger mx-2">
           
         </input>
 
-      <!--<input type="submit" value='Open Registrations' name="submit_button" class="btn btn-info mx-2"> -->
+        <input type="submit" value='Open Registrations' name="submit_button" class="btn btn-info mx-2">
           
         </input>
       </div>
@@ -50,7 +50,7 @@
           <option value="department" selected>Department</option>
           <option value="year">Year</option>
           <option value="all">All</option>
-          <option value="domains">Domains</option>
+          <option value="status">Status</option>
         </select>
       </div>
 
@@ -214,8 +214,8 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-    if (filterbyref.value == 'domains') {
-      for (var item of domains) {
+    if (filterbyref.value == 'status') {
+      for (var item of status) {
         str += `<option value='${item}'>${item}</option>`;
       }
       document.querySelector('#filterfollowing').innerHTML = str;
