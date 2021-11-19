@@ -38,7 +38,7 @@
   <hr />
   <form action="{{ url_for('main.filter_by') }}" method="POST">
     <div class="form-row">
-      <div class="col-md-3 col-4">
+      <div class="col-md-4 col-4">
         <label for="filterby">Filter By</label>
         <select
           onchange="changecatog()"
@@ -68,7 +68,7 @@
           aria-label="Default select example "
         ></select>
       </div>
-      <div class="col-md-3 mr-md-auto col-4">
+      <div class="col-md-4 mr-md-auto col-4">
         <label style="color: transparent">Filter</label>
         <input
           type="submit"
@@ -80,7 +80,7 @@
   </form>
   <form action="{{ url_for('main.search_by') }}" method="POST">
     <div class="form-row">
-      <div class="col-4">
+      <div class="col-md-4 col-4">
         <label for="searchbylist">Search By</label>
         <select
           name="searchbylist"
@@ -94,7 +94,7 @@
           <option value="email">Email Address</option>
         </select>
       </div>
-      <div class="col-5">
+      <div class="col-md-4 col-4">
         <label id="searchbylabel" for="searchby">Search By </label>
         <input
           required
@@ -105,7 +105,7 @@
           placeholder=""
         />
       </div>
-      <div class="col">
+      <div class="col-md-4 col-4">
         <label style="color: transparent">Submit</label>
         <input
           type="submit"
