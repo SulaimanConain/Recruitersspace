@@ -180,7 +180,7 @@
   
   const department = JSON.parse('{{departments|tojson}}');
   const years = JSON.parse('{{year|tojson}}');
-  const domains = JSON.parse('{{domains|tojson}}');
+  const domains = JSON.parse('{{domain|tojson}}');
   const filterbyref = document.querySelector('#filterby');
   document.querySelector(
     '#filterfollowinglabel'
@@ -214,7 +214,7 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-    if (filterbyref.value == 'domains') {
+    if (filterbyref.value == 'domain') {
       for (var item of domains) {
         str += `<option value='${item}'>${item}</option>`;
       }
