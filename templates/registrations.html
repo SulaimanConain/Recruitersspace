@@ -215,6 +215,7 @@
       ).innerText = `${filterbyref.value}`;
     }
     if (filterbyref.value == 'domains') {
+      str = '';
       for (var item of domains) {
         str += `<option value='${item}'>${item}</option>`;
       }
@@ -223,7 +224,7 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-
+  }
     if (filterbyref.value == 'year') {
       str = '';
       for (var item of years) {
