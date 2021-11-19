@@ -11,7 +11,7 @@ from models import Canidates, RegistrationControls
 from models import db
 from flask_csv import send_csv
 from collections import defaultdict
-from hardcoded_data import departments_choices, domains_choices, year_choices, departments, year
+from hardcoded_data import departments_choices, domains_choices, year_choices, departments, year, domains
 import json
 main = Blueprint('main', __name__)
 
@@ -74,7 +74,7 @@ def index():
 def registrations():
     if request.method == 'GET':
         try:
-            return render_template('registrations.html', query=Canidates.query.all(), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.all(), departments=departments, domain=domains, year=year)
         except:
             return render_template('registrations.html', query=[])
     else:
