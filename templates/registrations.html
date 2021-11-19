@@ -180,7 +180,7 @@
   
   const department = JSON.parse('{{departments|tojson}}');
   const years = JSON.parse('{{year|tojson}}');
-  const domain = JSON.parse('{{domains|tojson}}');
+  const domain = ['pending', 'hold', 'reject', 'accept'];
   const filterbyref = document.querySelector('#filterby');
   document.querySelector(
     '#filterfollowinglabel'
@@ -215,7 +215,6 @@
       ).innerText = `${filterbyref.value}`;
     }
     if (filterbyref.value == 'domains') {
-      str = '';
       for (var item of domains) {
         str += `<option value='${item}'>${item}</option>`;
       }
@@ -224,7 +223,7 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-  }
+
     if (filterbyref.value == 'year') {
       str = '';
       for (var item of years) {
