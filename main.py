@@ -130,9 +130,9 @@ def filter_by():
             return render_template('registrations.html', query=Canidates.query.all(), departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
-    if(filterbyarg == 'domains'):
+    if(filterbyarg == 'domain'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(domains=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(domain=filterfollowing), domains=domains, departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     else:
