@@ -215,7 +215,7 @@
       ).innerText = `${filterbyref.value}`;
     }
     if (filterbyref.value == 'domains') {
-      for (var item of status) {
+      for (var item of domains) {
         str += `<option value='${item}'>${item}</option>`;
       }
       document.querySelector('#filterfollowing').innerHTML = str;
