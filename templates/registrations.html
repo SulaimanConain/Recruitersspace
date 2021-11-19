@@ -50,7 +50,7 @@
           <option value="department" selected>Department</option>
           <option value="year">Year</option>
           <option value="all">All</option>
-          <option value="status">Status</option>
+          <option value="domain">Domain</option>
         </select>
       </div>
 
@@ -214,7 +214,7 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-    if (filterbyref.value == 'status') {
+    if (filterbyref.value == 'domain') {
       for (var item of status) {
         str += `<option value='${item}'>${item}</option>`;
       }
