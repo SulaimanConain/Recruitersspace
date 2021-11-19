@@ -50,7 +50,7 @@
           <option value="department" selected>Department</option>
           <option value="year">Year</option>
           <option value="all">All</option>
-          <option value="status">status</option>
+          <option value="domains">Domains</option>
         </select>
       </div>
 
@@ -180,7 +180,7 @@
   
   const department = JSON.parse('{{departments|tojson}}');
   const years = JSON.parse('{{year|tojson}}');
-  const status = ['pending', 'hold', 'reject', 'accept'];
+  const domains = JSON.parse('{{domains|tojson}}');
   const filterbyref = document.querySelector('#filterby');
   document.querySelector(
     '#filterfollowinglabel'
@@ -214,8 +214,8 @@
         '#filterfollowinglabel'
       ).innerText = `${filterbyref.value}`;
     }
-    if (filterbyref.value == 'status') {
-      for (var item of status) {
+    if (filterbyref.value == 'domains') {
+      for (var item of domains) {
         str += `<option value='${item}'>${item}</option>`;
       }
       document.querySelector('#filterfollowing').innerHTML = str;
