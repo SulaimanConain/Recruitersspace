@@ -74,7 +74,7 @@ def index():
 def registrations():
     if request.method == 'GET':
         try:
-            return render_template('registrations.html', query=Canidates.query.all(), departments=departments, domain=domains, year=year)
+            return render_template('registrations.html', query=Canidates.query.all(), departments=departments, domains=domains, year=year)
         except:
             return render_template('registrations.html', query=[])
     else:
