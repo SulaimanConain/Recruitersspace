@@ -165,7 +165,7 @@ def search_by():
 @main.route('/president_controls', methods=['POST'])
 @login_required
 def president_controls():
-    if request.form['submit_button'] == 'Generate Records' and current_user.email == 'president@sentec.com':
+    if request.form['submit_button'] == 'Generate Records' and current_user.email == 'nabeelghazali97@gmail.com':
         rows = Canidates.query.all()
         to_csv = []
         for i in rows:
@@ -197,7 +197,7 @@ def president_controls():
                                                        "status",
                                                        "remarks",
                                                        "remarks_by"])
-    elif request.form['submit_button'] == 'Open Registrations' and current_user.email == 'president@sentec.com':
+    elif request.form['submit_button'] == 'Open Registrations' and current_user.email == 'nabeelghazali97@gmail.com':
         registration_control = RegistrationControls.query.one()
         registration_control.isRegistration = True
         db.session.commit()
@@ -231,7 +231,7 @@ def statistics():
 @main.route('/delete', methods=['POST'])
 @login_required
 def delete():
-    if current_user.email == 'president@sentec.com':
+    if current_user.email == 'nabeelghazali97@gmail.com':
         email = request.form.get('email')
         current_canidate = Canidates.query.filter_by(email=email).first()
         db.session.delete(current_canidate)
