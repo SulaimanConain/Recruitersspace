@@ -18,8 +18,6 @@ main = Blueprint('main', __name__)
 
 def counters():
     return defaultdict(int)
-
-
 def freqs(data):
     r = defaultdict(counters)
     for d in data:
@@ -56,7 +54,6 @@ def index():
         try:
             canidate = Canidates(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, past_experience=form.pastexp.data, reason=form.reason.data,
                                  phone_number=form.phone.data, department=form.department.data, year=form.year.data, domain=form.domain.data, status="pending", remarks='none', remarks_by='none')
-
             db.session.add(canidate)
             db.session.commit()
             flash(
@@ -122,22 +119,22 @@ def filter_by():
     filterfollowing = request.form.get('filterfollowing')
     if(filterbyarg == 'department'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(department=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(department=filterfollowing), domains=domains, departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
-    if(filterbyarg == 'all'):
+    elif(filterbyarg == 'all'):
         try:
-            return render_template('registrations.html', query=Canidates.query.all(), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.all(), domains=domains, departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
-    if(filterbyarg == 'domain'):
+    elif(filterbyarg == 'domain'):
         try:
             return render_template('registrations.html', query=Canidates.query.filter_by(domain=filterfollowing), domains=domains, departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
     else:
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(year=filterfollowing), departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(year=filterfollowing), domains=domains, departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
 
