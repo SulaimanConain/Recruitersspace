@@ -147,17 +147,17 @@ def search_by():
 
     if(searchbytype == 'first_name'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(first_name=searchbyvalue),domains=domains, departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(first_name=searchbyvalue), departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
-    elif(searchbytype == 'phone_number'):
+    if(searchbytype == 'phone_number'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(phone_number=searchbyvalue),domains=domains, departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(phone_number=searchbyvalue), departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
-    else(searchbytype == 'email'):
+    if(searchbytype == 'email'):
         try:
-            return render_template('registrations.html', query=Canidates.query.filter_by(email=searchbyvalue), domains=domains, departments=departments, year=year)
+            return render_template('registrations.html', query=Canidates.query.filter_by(email=searchbyvalue), departments=departments, year=year)
         except:
             return render_template('registrations.html', query=Canidates.query.all())
 
