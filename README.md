@@ -1,6 +1,6 @@
 # Recruitersspace
 [website] (https://recruitersspace.herokuapp.com)
-[recruiter login] (https://recruitersspace.herokuapp.com/login)
+[recruiter login] (https://recruitersspace.herokuapp.com/signup)
 
 Information Capture and Dissemination Environment
 
