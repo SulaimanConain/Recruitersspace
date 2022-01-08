@@ -103,33 +103,6 @@ II.	PART II
 A.	SOFTWARE METRICS
 The estimation of countable software attributes is called software metrics. Apart from measuring software performance, these metrics also help in estimating productivity and other properties and planning work items. It is one of the methods managements adopts to track software development progress and to set future targets. There are two types of software metrics, internal and external metrics. Internal metrics are of great significance for the developer for example lines of code. While the external metrics include properties like reliability, usability and functionality and is important for the user. Table I shows partition of tasks achieved so far and their metric values. It gives information about task name, Lines of code, granularity level and number of units.
 
-Task Name	LOC	Component granularity level	Number of units
-Recruiter Sign up	64	1 HTML page, 
-1 Python Class
-2 Python Methods	4
-Recruiter Login	59	1 HTML page,
-1 Python Class
-2 Python Methods	4
-Registration Form for applicant	169	1 HTML page,
-2 Python Classes
-
-
-	3
-View applicant details	226	1 HTML page,
-1 Python Method	2
-Applicant Statistics (Visualization)	167	1 HTML page,
-1 Python Method	2
-Applicant shortlisting	17	1 Python Method 	1
-Applicant filtering	23	1 Python Method	1
-Applicant Search 	18	1 Python Method	1
-	NA	Framework
-(PostgreSQL)	1
-	NA	Python Library
-(SQLAlchemy)
-	1
-
-Table 1: Software Metrics
-
 B.	GRANUALITY OF COMPONENTS
 Analyzing the right amount of granularity in a model is imperative to make sure the model is elaborative as per requirement without distorting the data. Therefore, it is vital to understand the concept of granularity and its application. When discussing granularity, a major barrier we come across is a lack of understanding and consistent language. Although, some research has been done to explain granularity in the context of engineering design, different terminologies have been used to explain this by different communities. The following section explains some important concepts and their usage in model granularity. It provides a different viewpoint on granularity and can be useful in measuring granularity levels.
 
