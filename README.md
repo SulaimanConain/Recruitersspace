@@ -1,14 +1,17 @@
 # Recruitersspace
 [website] (https://recruitersspace.herokuapp.com)
 [recruiter login] (https://recruitersspace.herokuapp.com/signup)
-
+-------------------------------
 This project was done by Team python.
 role and contribution:
-
-Muneeb khan: Back End, Software matrices and granuality, Class diagrams, main(flask and SQLAlchemy)
+Muneeb khan: Back End, Software matrices and granuality, Class diagrams, main(flask and SQLAlchemy).
+----------------------
 Sulaiman Conain mohammed: Front end, sequence diagram, Architecture patters, Activity Diagram.
+----------------------
 Nabeel Ghazali: Front End, State Diagram, Planning tools,Software Architecture.
+-----------------------
 Arsal Jawaid:Back End, Main(Flask and PostGre), Use Case Diagrams.
+---------------------------
 
 
 Information Capture and Dissemination Environment
