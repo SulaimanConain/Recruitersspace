@@ -1,9 +1,8 @@
 # Recruitersspace
 [website] (https://recruitersspace.herokuapp.com)
 [recruiter login] (https://recruitersspace.herokuapp.com/signup)
--------------------------------
-This project was done by Team python.
 
+This project was done by Team python.
 role and contribution:
 ----------------------------
 Muneeb khan: Back End, Software matrices and granuality, Class diagrams, main(flask and SQLAlchemy).
