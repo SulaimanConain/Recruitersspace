@@ -22,7 +22,7 @@ def login_post():
     try:
         user = User.query.filter_by(email=email).first()
 
-        if user and check_password_hash(user.password, password) and user.email != 'president@sentec.com' and not RegistrationControls.query.one().isRegistration:
+        if user and check_password_hash(user.password, password) and user.email != 'khan@gmail.com' and not RegistrationControls.query.one().isRegistration:
             flash('Registrations are Closed')
             return redirect(url_for('auth.login'))
 
