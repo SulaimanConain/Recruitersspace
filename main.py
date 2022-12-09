@@ -197,7 +197,7 @@ def president_controls():
                                                        "status",
                                                        "remarks",
                                                        "remarks_by"])
-    elif request.form['submit_button'] == 'Open Registrations' and current_user.email == 'nabeelghazali97@gmail.com':
+    elif request.form['submit_button'] == 'Open Registrations' and current_user.email == 'president@sentec.com':
         registration_control = RegistrationControls.query.one()
         registration_control.isRegistration = True
         db.session.commit()
